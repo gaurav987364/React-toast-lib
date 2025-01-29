@@ -22,3 +22,12 @@ export const applyBgColor = (mode: string): string => {
 
   return bgColorMap[mode] || bgColorMap["info"];
 };
+
+
+export const seprateWords = (inputString:string)=>{
+  if(inputString.includes("-")){
+      return inputString.split("-")
+  } else {
+    return {inputString}
+  }
+};

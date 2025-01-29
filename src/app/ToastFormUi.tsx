@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GiToaster } from "react-icons/gi";
 import { uuid } from "../utils/helper";
-import { Toasts } from "../portals/ToastPortal";
+import { Toasts } from "./ToastPortal";
 
 interface ToastFormUiProps {
     getToast: (toast: Toasts) => void;
@@ -9,8 +9,6 @@ interface ToastFormUiProps {
 const ToastFormUi = ({getToast}:ToastFormUiProps) => {
     const [value,setValue] = useState<string>("");
     const [mode,setMode] = useState<string>("info");
-    const [autoClose,setAutoClose] = useState<boolean | string>(false);
-    
     
     const handelSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -21,11 +19,10 @@ const ToastFormUi = ({getToast}:ToastFormUiProps) => {
             id: uuid(),
             message: value,
             mode: mode,
-            autoClose: autoClose
         };
         getToast(newToast);
         setValue("");
-    }
+    };
   return (
     <div className=" w-[400px] h-[450px] border rounded-sm">
         <div className=" p-2 flex flex-col justify-center items-center">
@@ -38,16 +35,6 @@ const ToastFormUi = ({getToast}:ToastFormUiProps) => {
             </div>
 
             <div className="h-[200px]  w-full flex items-center justify-center flex-col space-y-2">
-                <div className=" w-64 flex items-center justify-around">
-                    <input 
-                        type="checkbox"  
-                        className=" h-4 w-4"
-                        value={autoClose as string}
-                        onChange={(e)=>setAutoClose(e.target.value)}
-                    />
-                    <label className=" font-semibold">Auto Close</label>
-                </div>
-
                 <div className=" w-46 ">
                     <select 
                      value={mode}

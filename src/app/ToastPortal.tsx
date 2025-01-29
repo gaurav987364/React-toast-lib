@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { uuid } from "../utils/helper";
 import  ReactDOM  from "react-dom";
-import Toast from "../components/Toast";
+import Toast from "./Toast";
 
 
 export interface Toasts {
@@ -14,15 +14,39 @@ export interface Toasts {
 interface ToastPortalProps {
     allToast: Toasts[];
     removeToast: (id: string | number) => void;
+    autoClose?: boolean;
+    autoCloseTime?: number;
+    setToast: (toast: Toasts[] | ((prev: Toasts[]) => Toasts[])) => void;
 }
 
 
-const ToastPortal = ({allToast,removeToast}:ToastPortalProps) => {
+const ToastPortal = ({
+    allToast,
+    removeToast,
+    autoCloseTime=3000,
+    setToast,
+    autoClose=true
+}:ToastPortalProps) => {
      //?:todo=> later move this code into custom-hook
     const [loaded,setLoaded] = useState<boolean>(false);
     const [portalId] = useState(`toast-portal-${uuid()}`);
-
+    const [isClose,setIsClosing] = useState<string | number | boolean>("");
    
+    useEffect(()=>{
+        if(isClose){
+            setToast((prev: Toasts[]) => prev.filter((toast: Toasts) => toast.id !== isClose));
+        }
+    },[isClose]);
+
+
+    useEffect(()=>{
+        if(autoClose && allToast.length){
+            const id = allToast[allToast.length - 1].id;
+            setTimeout(()=> setIsClosing(id), autoCloseTime);
+        }
+    },[allToast,autoCloseTime]);
+
+
     useEffect(()=>{
         const div = document.createElement("div");  // creating one div
         div.id = portalId; // creating random id for toast
@@ -52,3 +76,7 @@ const ToastPortal = ({allToast,removeToast}:ToastPortalProps) => {
 }
 
 export default ToastPortal;
+
+
+
+//? Portals defination: It provide frist class way of rendering children direclty into dom node outside the DOM hirechy of the parent component;Means haamara app index.html me #root naaam ke div ke andar hota hai portal ka use karke ham uske bahar bhi kuch render kar sakte hai;

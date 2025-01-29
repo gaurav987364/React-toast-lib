@@ -1,0 +1,38 @@
+<ToastContainer 
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+/>
+
+
+
+
+/// old from youtube se learning kithi to uska implmented
+
+// import { useState } from "react"
+// import Toast from "./components/ToastFormUi"
+// import ToastPortal, { Toasts } from "./portals/ToastPortal"
+
+
+ // const [toast,setToast] = useState<Toasts[]>([]);
+
+  // const getToast = (newt:Toasts)=>{
+  //   setToast([...toast, newt])
+  // };
+  // //remove toasts
+  // const removeToast = (id: string | number) => {
+  //     setToast((prev) => prev.filter((toast) => toast.id !== id));
+  // };
+
+    {/* <Toast  getToast={getToast}/>
+        <ToastPortal 
+        allToast={toast}
+        removeToast={removeToast}
+        setToast={setToast}
+        /> */}
