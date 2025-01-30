@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 export const uuid = () => {
     let dt = new Date().getTime();
   
@@ -31,3 +33,35 @@ export const seprateWords = (inputString:string)=>{
     return {inputString}
   }
 };
+
+export const useProgressBar = (bar:boolean,autoCloseDuration:number)=>{
+  const [progress,setProgress] = useState<number>(100);
+
+  useEffect(() => {
+    if (!bar) return; // No progress bar, exit early
+
+    // Start the progress bar animation
+    setProgress(0);
+  }, [bar, autoCloseDuration]);
+  return progress;
+};
+
+
+
+
+
+
+// progress: Represents the progress bar width (from 100% → 0%).
+// remainingTime: Stores how much time is left before the toast disappears.
+// paused: Tracks whether the user is hovering over the toast.
+// timerRef: Stores the timeout reference for auto-removal.
+// startTimeRef: Saves the starting time to calculate elapsed time.
+
+
+// Resets paused = false.
+// Calls startTimer(remainingTime), which restarts the timeout using the saved remainingTime.
+// Example Flow:
+
+// If autoCloseDuration = 5000ms
+// User hovers at 2000ms, remaining time = 3000ms
+// User leaves at 2500ms, restart timer for 3000ms (not resetting to 5000ms)

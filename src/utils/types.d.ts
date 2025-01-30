@@ -11,10 +11,15 @@ export interface usePortalProps {
 
 export interface ToasterContainerProps {
     position?:"top-right" | "top-left" | "bottom-right" | "bottom-left" | "top-center" | "bottom-center";
+    autoClose?:boolean;
+    autoCloseDuration?: number;
+    progressBar?:boolean;
 }
 
 export interface ToastUiProps {
     message:string;
     id:string | number;
     mode: string;
+    bar?:boolean;
+    autoCloseDuration?:number;
 }

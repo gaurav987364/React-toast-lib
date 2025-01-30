@@ -11,7 +11,26 @@
 />
 
 
-
+Easy to set up for real, you can make it work in less than 10sec!
+Super easy to customize
+RTL support
+Swipe to close 👌
+Beautiful by default
+Can choose swipe direction
+Super easy to use an animation of your choice
+Bring your own component
+Has onOpen and onClose hooks.
+Can remove a toast programmatically
+Define behavior per toast
+Pause toast when the window loses focus 👁
+Fancy progress bar to display the remaining time
+Possibility to update a toast
+You can control the progress bar a la nprogress 😲
+You can limit the number of toast displayed at the same time
+Dark mode 🌒
+Colored theme
+Works with Promise
+And much more !
 
 /// old from youtube se learning kithi to uska implmented
 
@@ -36,3 +55,30 @@
         removeToast={removeToast}
         setToast={setToast}
         /> */}
+
+
+// This thing work as 
+  Object.keys(positionStyles).forEach((key: string) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (div.style as any)[key] = (positionStyles as any)[key];
+        });
+hame ek object ke key value pair ka array mil rha hai hme sab ke liye function chalaya or LHS ko RHS ke equal kiya hai
+
+//logic of autoClose
+
+we recive two prop from user one is for autoClose and other is for autoCloseTime by default we have to set or toast to autoClose and give duration of 3000 ms;
+
+hme ek state lagegi jisme ham sirf us recent toast ki id set krege
+
+useEffect(()=>{
+  if(autoClose && toast.length){
+    const id = toast[toast.length - 1].id;
+    setTimeout(()=>setIsClosing(id), autoCloseTime);
+  }
+});
+
+useEffect(()=>{
+  if(isClose){
+    setToast(prev => prev?.filter(toast => toast.id !== isClose));
+  }
+},[isClose]);

@@ -8,6 +8,7 @@ const Test = () => {
         <button className=" px-3 py-1 bg-gray-500 rounded-lg cursor-pointer" onClick={()=> toast.error("Error Toast")}>error</button>
         <button className=" px-3 py-1 bg-gray-500 rounded-lg cursor-pointer" onClick={()=> toast.info("Info Toast")}>info</button>
         <button className=" px-3 py-1 bg-gray-500 rounded-lg cursor-pointer" onClick={()=> toast.warning("Warning Toast")}>warning</button>
+        <button className=" px-3 py-1 bg-gray-500 rounded-lg cursor-pointer" onClick={()=> toast.regular("Regular Toast")}>Regular</button>
     </div>
   )
 }
