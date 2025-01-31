@@ -82,3 +82,7 @@ useEffect(()=>{
     setToast(prev => prev?.filter(toast => toast.id !== isClose));
   }
 },[isClose]);
+
+
+
+// Main work is to make flow like when user give progress is true means we have to take care progress bar is shown on every component and it disappears after progress end and if user provide only autoclose true progress false we have only disappears toast after some time which user gives or default time;
