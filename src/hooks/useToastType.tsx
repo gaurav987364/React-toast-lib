@@ -8,6 +8,7 @@ const useToastType = () => {
     const warning = (message:string)=> addToast(message,"warning");
     const info = (message:string)=> addToast(message,"info");
     const regular = (message:string)=> addToast(message,"regular");
+    //promise, emoji, greet, component, etc...
     return {success,error,warning,info,regular}  
     // returning all the toast types as a object
 }

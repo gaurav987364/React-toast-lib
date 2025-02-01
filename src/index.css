@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.progress-bar {
+    transition: width 100ms linear;
+}

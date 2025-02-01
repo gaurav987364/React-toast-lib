@@ -54,3 +54,8 @@ export const usePortal = ({ position }: usePortalProps) => {
 
     return { loaded, portalId };
 };
+
+//?Optimizations
+//document.createElement() is executed every render.
+// Object.keys(positionStyles).forEach() is inefficient.
+

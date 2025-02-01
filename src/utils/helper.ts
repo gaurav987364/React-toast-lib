@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export const uuid = () => {
     let dt = new Date().getTime();
   
@@ -34,17 +32,6 @@ export const seprateWords = (inputString:string)=>{
   }
 };
 
-export const useProgressBar = (bar:boolean,autoCloseDuration:number)=>{
-  const [progress,setProgress] = useState<number>(100);
-
-  useEffect(() => {
-    if (!bar) return; // No progress bar, exit early
-
-    // Start the progress bar animation
-    setProgress(0);
-  }, [bar, autoCloseDuration]);
-  return progress;
-};
 
 
 

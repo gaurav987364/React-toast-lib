@@ -1,16 +1,18 @@
 import { MdClose, MdNotificationsActive } from "react-icons/md";
 import { ToastUiProps } from "../utils/types";
 import { useToast } from "../context/ToastContext";
-import React from "react";
-import { useProgressBar } from "../utils/helper";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { IoCheckmarkCircle, IoInformationCircle, IoWarning } from "react-icons/io5";
 import { PiSmileySadBold } from "react-icons/pi";
+import { useProgressBar } from "../hooks/useProgressbar";
 
-const infoGreen : string = "border-blue-500";
-const dangerRed  : string= "border-red-500";
-const warningYellow : string = "border-yellow-500";
-const successBlue : string = "border-green-500";
-const regularWhite : string = "border-neutral-700";
+const borderClasses = {
+  info: "border-blue-500",
+  success: "border-green-500",
+  error: "border-red-500",
+  warning: "border-yellow-500",
+  regular: "border-neutral-700",
+};
 
 const iconMap: { [key in ToastUiProps['mode']]: React.ReactElement } = {
     info: <IoInformationCircle size={28} fill="#2B7FFF"/>,
@@ -22,31 +24,33 @@ const iconMap: { [key in ToastUiProps['mode']]: React.ReactElement } = {
 
 
 
-
-
-
-
 const ToastUi = ({
     id,
     message,
     mode,
-    autoCloseDuration=3000,
+    autoClose=true,
+    autoCloseDuration=2000,
     bar=true
 }:ToastUiProps) => {
     const {removeToast} = useToast();
-    const progress = useProgressBar(bar,autoCloseDuration);
-    const icon = iconMap[mode];
+    const progress = useProgressBar(autoClose && bar,autoCloseDuration);
+    // const icon = iconMap[mode];
 
+    //?memoize icon and border-class to avoid re-rendering;
+    const icon = useMemo(()=> iconMap[mode],[mode]);
+    const borderClass = useMemo(()=> borderClasses[mode as keyof typeof borderClasses] || "border-neutral-500", [mode]);
+
+    //?memoize removeToast funtcion to avoid re-rendering
+    const removeToastMemo = useCallback(()=> removeToast(id), [id,removeToast]);
+
+    useEffect(()=>{
+      if(autoClose && progress <= 0){
+        removeToast(id);
+      }
+    },[progress,autoClose, id, removeToast]);
   return (
     <React.Fragment>
-      <div className={` relative w-full h-14 mt-1 transition-transform duration-150 ease-in-out rounded-sm text-neutral-50 flex items-center justify-between px-2 border-l-[5px]  
-        ${mode === "info" 
-        ? infoGreen : mode === "success" 
-        ? successBlue : mode === "error" 
-        ? dangerRed : mode === "warning" 
-        ? warningYellow : mode === "regular" 
-        ? regularWhite : "border-neutral-500"}
-          bg-gradient-to-r from-[#0f172a]  to-[#334155]`}
+      <div className={` relative w-full h-14 mt-1 transition-transform duration-150 ease-in-out rounded-sm text-neutral-50 flex items-center justify-between px-2 border-l-[5px] ${borderClass} bg-gradient-to-r from-[#0f172a]  to-[#334155]`}
       >
             <div className="flex justify-start items-center gap-2 text-md font-medium line-clamp-1 ">
                 <span>{icon}</span>
@@ -58,11 +62,11 @@ const ToastUi = ({
             <MdClose 
                 size={20} 
                 className=" cursor-pointer" 
-                onClick={()=>removeToast(id)}
+                onClick={removeToastMemo}
             />
       </div>
       
-      {bar && (
+      {bar && autoClose && (
         <div className="progress w-full absolute bottom-0 left-0 h-0.5 overflow-hidden">
          <div 
          className={` h-full transition-all 
@@ -71,7 +75,7 @@ const ToastUi = ({
           ? "bg-green-500" : mode === "error" 
           ? "bg-red-500" : mode === "warning" 
           ? "bg-yellow-500" : "bg-neutral-500"}`} 
-         style={{width:`${progress}%`,transition:`width ${autoCloseDuration}ms linear`}}></div>
+          style={{ width: `${progress}%` }}></div>
         </div>
       )}
     </React.Fragment>

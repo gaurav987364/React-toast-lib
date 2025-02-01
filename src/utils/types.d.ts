@@ -21,5 +21,6 @@ export interface ToastUiProps {
     id:string | number;
     mode: string;
     bar?:boolean;
+    autoClose?:boolean;
     autoCloseDuration?:number;
 }
