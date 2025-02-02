@@ -7,7 +7,11 @@ interface ContextTypes {
     setToasts:React.Dispatch<React.SetStateAction<Toasts[]>>;
     addToast:(message:string,mode:string)=>void;
     removeToast:(id:string | number)=>void;
-}
+};
+
+
+
+
 export const ToastContext = createContext<ContextTypes | undefined>(undefined);
 
 export const ToastProvider = ({children}:{children:React.ReactNode})=>{

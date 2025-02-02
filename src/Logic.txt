@@ -86,3 +86,53 @@ useEffect(()=>{
 
 
 // Main work is to make flow like when user give progress is true means we have to take care progress bar is shown on every component and it disappears after progress end and if user provide only autoclose true progress false we have only disappears toast after some time which user gives or default time;
+
+
+
+
+
+import { useToast } from "../context/ToastContext"
+
+const useToastType = () => {
+    const {addToast} = useToast();
+
+    const success = (message) => addToast(message, "success");
+    const error = (message) => addToast(message, "error");
+    const warning = (message) => addToast(message, "warning");
+    const info = (message) => addToast(message, "info");
+    const regular = (message) => addToast(message, "regular");
+
+    const promise = (promiseFunction, message) => {
+        const { pending, success, error } = message;
+        const myPromise = new Promise((resolve, reject) => {
+            promiseFunction(resolve, reject);
+        });
+
+        addToast(pending, "info");
+        myPromise
+            .then((result) => {
+                addToast(success, "success");
+            })
+            .catch((error) => {
+                addToast(error, "error");
+            });
+    };
+
+    const emoji = (message, emoji) => {
+        const emojiMessage = `${emoji} ${message}`;
+        addToast(emojiMessage, "info");
+    };
+
+    const greet = (message, name) => {
+        const greetMessage = `Hello, ${name}! ${message}`;
+        addToast(greetMessage, "info");
+    };
+
+    const component = (Component) => {
+        addToast(<Component />, "info");
+    };
+
+    return {success, error, warning, info, regular, promise, emoji, greet, component};
+}
+
+export default useToastType;
