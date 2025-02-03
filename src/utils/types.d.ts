@@ -1,7 +1,10 @@
+import { IconType } from "react-icons";
+
 export interface Toasts {
     id: string | number; 
     message: string;
     mode: string;
+    emoji?:IconType;
 };
 
 // position props of portal
@@ -23,4 +26,10 @@ export interface ToastUiProps {
     bar?:boolean;
     autoClose?:boolean;
     autoCloseDuration?:number;
+}
+
+export interface AddToastProps{
+    message:string;
+    mode:string;
+    emoji?:IconType;
 }

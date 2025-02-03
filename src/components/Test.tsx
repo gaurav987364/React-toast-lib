@@ -1,7 +1,7 @@
+
 import useToastType from "../hooks/useToastType"
 
 const Test = () => {
- 
     const toast = useToastType();
   return (
     <div className=" flex gap-2">
@@ -14,4 +14,4 @@ const Test = () => {
   )
 }
 
-export default Test
+export default Test;

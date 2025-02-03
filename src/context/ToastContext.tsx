@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
-import { Toasts } from "../utils/types";
 import { uuid } from "../utils/helper";
+import { Toasts } from "../utils/types";
 
 interface ContextTypes {
     toasts:Toasts[];
@@ -18,7 +18,7 @@ export const ToastProvider = ({children}:{children:React.ReactNode})=>{
     const [toasts,setToasts] = useState<Toasts[]>([]);
 
     const addToast = useCallback((message:string,mode:string)=>{
-        setToasts((prev)=>[...prev, {message, mode, id:uuid()}]);
+        setToasts((prev)=>[...prev, {message, mode ,id:uuid()}]);
     },[]);
 
     const removeToast = useCallback((id:string | number)=>{
