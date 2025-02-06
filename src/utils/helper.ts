@@ -23,7 +23,7 @@ export const applyBgColor = (mode: string): string => {
   return bgColorMap[mode] || bgColorMap["info"];
 };
 
-
+//seprate word function (eg: top-right)=> [top,right];
 export const seprateWords = (inputString:string)=>{
   if(inputString.includes("-")){
       return inputString.split("-")
