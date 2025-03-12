@@ -51,4 +51,4 @@ export const seprateWords = (inputString:string)=>{
 
 // If autoCloseDuration = 5000ms
 // User hovers at 2000ms, remaining time = 3000ms
-// User leaves at 2500ms, restart timer for 3000ms (not resetting to 5000ms)
+// User leaves at 2500ms, restart timer for 3000ms (not resetting to 5000ms);
