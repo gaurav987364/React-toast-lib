@@ -8,7 +8,7 @@ const App = () => {
       <div className=' w-full h-screen bg-slate-950 text-neutral-100 flex items-center justify-center'>
         <Test/>
         <Toaster
-         position="bottom-right"
+         position="top-right"
          autoClose={true}
          autoCloseDuration={3000}
          progressBar={true}
