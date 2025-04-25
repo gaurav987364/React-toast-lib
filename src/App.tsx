@@ -1,6 +1,6 @@
-import Test from "./components/Test"
-import { ToastProvider } from "./context/ToastContext"
-import Toaster from "./portals/Toaster"
+import Test from "./components/Test";
+import { ToastProvider } from "./context/ToastContext";
+import Toaster from "./portals/Toaster";
 
 const App = () => {
   return (
@@ -18,4 +18,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

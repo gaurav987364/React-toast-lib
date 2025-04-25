@@ -47,6 +47,7 @@ const Toaster = ({
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
       };
     }, [autoClose, autoCloseDuration, toasts]);
+    
   return loaded && ReactDOM.createPortal(
     <div className=" toast-container">
         {toasts?.map((toast) => (

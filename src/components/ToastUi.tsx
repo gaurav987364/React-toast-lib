@@ -82,7 +82,7 @@ const ToastUi = ({
   )
 }
 
-export default ToastUi
+export default ToastUi;
 
 
 
