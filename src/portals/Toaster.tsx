@@ -55,7 +55,7 @@ const Toaster = ({
             key={toast.id} 
             {...toast} 
             bar={progressBar} 
-            autoClose={autoClose}  // to close specific toast
+            autoClose={autoClose}  // to close specific toast...
             autoCloseDuration={autoCloseDuration}
            />
         ))}
