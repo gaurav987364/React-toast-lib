@@ -49,7 +49,7 @@ const Toaster = ({
     }, [autoClose, autoCloseDuration, toasts]);
     
   return loaded && ReactDOM.createPortal(
-    <div className=" toast-container">
+    <div className="toast-container">
         {toasts?.map((toast) => (
            <ToastUi 
             key={toast.id} 
