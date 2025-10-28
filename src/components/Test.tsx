@@ -1,5 +1,5 @@
 
-import useToastType from "../hooks/useToastType"
+import useToastType from "../hooks/useToastType";
 
 const Test = () => {
     const toast = useToastType();
