@@ -19,21 +19,6 @@ const Toaster = ({
     //? ref for storing time previous wala 
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // useEffect(()=>{
-    //   if(isClose){
-    //     setToasts((prev)=> prev?.filter((t)=> t.id !== isClose));
-    //   }
-    // },[isClose]);
-
-    // useEffect(()=>{
-    //   if(autoClose && toasts.length){
-    //     const id = toasts[toasts.length - 1]?.id;
-    //     setTimeout(()=> setIsClosing(id), autoCloseDuration);
-    //   }
-    // },[autoClose, autoCloseDuration,toasts]);
-
-    // Unnecessary useEffect calls.
-    // setTimeout should be stored in useRef to prevent unnecessary re-renders.
 
     useEffect(() => {
       if (autoClose && toasts.length) {
